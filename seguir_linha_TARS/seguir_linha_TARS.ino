@@ -1,7 +1,7 @@
 #include <robo_hardware2.h> 
 #include <Servo.h>
 
-#define DIVISOR_BRANCO_PRETO 50
+#define DIVISOR_BRANCO_PRETO 97
 
 float valorSensorDir;
 float valorSensorEsq;
@@ -17,19 +17,22 @@ void loop(){
 
 	//Identifica se os dois sensores viram branco
 	if(valorSensorDir > DIVISOR_BRANCO_PRETO && valorSensorEsq > DIVISOR_BRANCO_PRETO){
-		robo.acionarMotores(80,80);	//Aciona os dois motores com a mesma velocidade
+		robo.acionarMotores(48,48);	//Aciona os dois motores com a mesma velocidade
+    delay(80);
 	}
 	//Identifica se o sensor da esquerda viu banco e o da direita viu preto
 	else if (valorSensorDir < DIVISOR_BRANCO_PRETO && valorSensorEsq > DIVISOR_BRANCO_PRETO){
-		robo.acionarMotores(80,-80);	//Aciona o motor esquerdo e mantem o motor direito desligado
+		robo.acionarMotores(50,-65);	//Aciona o motor esquerdo e mantem o motor direito desligado
+    delay(150);
 	}
 	//Identifica se o sensor da direita viu banco e o da esquerda viu preto
 	else if ( valorSensorDir > DIVISOR_BRANCO_PRETO && valorSensorEsq < DIVISOR_BRANCO_PRETO){
-		robo.acionarMotores(-80,80);	//Aciona o motor direito e mantem o motor esquerdo desligado
+		robo.acionarMotores(-65,50);	//Aciona o motor direito e mantem o motor esquerdo desligado
+    delay(150);
 	}
 	else{ //Identifica se os dois sensores viram preto
-		robo.acionarMotores(0,0);
+    robo.acionarMotores(65,65);
+    delay(80);
 	}
-
 }
 
